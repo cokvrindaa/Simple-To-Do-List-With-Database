@@ -1,3 +1,16 @@
+<?php
+// Sesi tertentu
+  session_start();
+  include "config/databaseconfig.php"; 
+
+  if (!isset($_SESSION['user_id'])) {
+    header("Location: index.php");
+    exit;
+  }
+  $userTable = "user_" . $_SESSION['user_id'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -26,8 +39,8 @@
     </form>
 
     <?php 
-    include "databaseconfig.php"; 
-    $sql = "SELECT * FROM data";
+    include "config/databaseconfig.php"; 
+    $sql = "SELECT * FROM $userTable";
     $query = mysqli_query($koneksi, $sql);
     if($query && mysqli_num_rows($query) > 0){
       foreach($query as $teksdata){

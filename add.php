@@ -1,21 +1,43 @@
 <?php
-include "databaseconfig.php";
+include "config/databaseconfig.php";
 $teksdata = $_POST['isidata'];
 
-$sql = "insert into todolist.data values('', '$teksdata', '', '')";
 
-$query = mysqli_query($koneksi, $sql);
+session_start();
 
-if ($query){
+if (!isset($_SESSION['user_id'])) {
     header("Location: index.php");
     exit;
 }
-else{
+
+$userTable = "user_" . $_SESSION['user_id'];
+
+
+if(trim($teksdata) == ""){
     echo "
-        <script>
-            alert('failed');
-            location.href = 'index.php';
-        </script>
+    <script>
+        alert('BELUMM DI ISI BUJANGGG!!!');
+        location.href = 'main.php';
+    </script>
     ";
 }
+else{
+    $sql = "insert into $userTable values('', '$teksdata', '', '')";
+    $query = mysqli_query($koneksi, $sql);
+
+    if ($query){
+        header("Location: main.php");
+        exit;
+    }
+    else{
+        echo "
+            <script>
+                alert('failed');
+                location.href = 'main.php';
+            </script>
+        ";
+    }
+}
+
+
 ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2025 at 06:38 AM
+-- Generation Time: Jan 26, 2025 at 09:30 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -24,10 +24,31 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `data` (
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `created_at`) VALUES
+(2, 'admin', '$2y$10$xGZYHFOsD3YO4JcKn/9mA.LU9zSfBlZ4PvFAb2aK/p15ip2IliPWa', '2025-01-26 06:44:36'),
+(3, 'newuser', '$2y$10$Ixy4gR4qatn3Efz0LzzuQeRWQh.6MMPokQaI3YOc141prqSUTlQyC', '2025-01-26 07:33:20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_2`
+--
+
+CREATE TABLE `user_2` (
   `id` int(100) NOT NULL,
   `isi` varchar(20) NOT NULL,
   `status` varchar(20) NOT NULL,
@@ -35,21 +56,29 @@ CREATE TABLE `data` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `data`
+-- Dumping data for table `user_2`
 --
 
-INSERT INTO `data` (`id`, `isi`, `status`, `tanggal`) VALUES
-(37, 'tesssfsdfsdsffsdfd', 'belum', ''),
-(38, 'aaaa', 'belum', '');
+INSERT INTO `user_2` (`id`, `isi`, `status`, `tanggal`) VALUES
+(9, 'makan nasi', 'belum', ''),
+(10, 'pergi ke bulan', '', ''),
+(11, 'demo', '', '');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `data`
+-- Indexes for table `users`
 --
-ALTER TABLE `data`
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indexes for table `user_2`
+--
+ALTER TABLE `user_2`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -57,10 +86,16 @@ ALTER TABLE `data`
 --
 
 --
--- AUTO_INCREMENT for table `data`
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `data`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `user_2`
+--
+ALTER TABLE `user_2`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

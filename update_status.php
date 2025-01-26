@@ -1,5 +1,17 @@
 <?php
-include "databaseconfig.php";
+include "config/databaseconfig.php";
+
+// Sesi tertentu
+session_start();
+include "config/databaseconfig.php"; 
+
+if (!isset($_SESSION['user_id'])) {
+  header("Location: index.php");
+  exit;
+}
+$userTable = "user_" . $_SESSION['user_id'];
+
+
 
 $id = intval($_POST['id']); 
 // mengambil nilai status dari form
@@ -12,10 +24,10 @@ if ( $status === 'selesai') {
     $status = 'belum';
 }
 
-$sql = "UPDATE data SET status = '$status' WHERE id = $id";
+$sql = "UPDATE $userTable SET status = '$status' WHERE id = $id";
 
 if (mysqli_query($koneksi, $sql)) {
-    header("Location: index.php");
+    header("Location: main.php");
     exit();
 } else {
     echo "Error updating status: " . mysqli_error($koneksi);
