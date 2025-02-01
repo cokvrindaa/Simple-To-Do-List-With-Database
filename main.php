@@ -18,7 +18,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simple To Do List With Database</title>
+    <title>Simple ToDoList - Halaman Utama</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script
       src="https://kit.fontawesome.com/1897315b86.js"
@@ -27,7 +27,6 @@
   </head>
 
   <body class="p-5 pt-8 lg:max-w-[800px] lg:mx-auto lg:h-screen">
-    <p>User : <?php echo $_SESSION['username']; ?> usertable : <?php echo $userTable ?> </p>
     <div class="flex justify-between">
       <h1 class="text-4xl font-bold mb-5">To Do List</h1>
       <a href="logout.php" class="logout">
